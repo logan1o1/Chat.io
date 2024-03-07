@@ -11,3 +11,13 @@ export const getUsersForSidebar = async (req, resp, next) => {
         next(error)
     }
 }
+
+export const getAllUsers = async (req, res, next) => {
+    try {
+        const allusers = await User.find();
+
+        res.status(200).json(allusers);
+    } catch (error) {
+        next(error);
+    }
+}

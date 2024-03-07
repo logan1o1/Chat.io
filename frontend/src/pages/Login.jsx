@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
-    const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async () => {}
+  const handleSubmit = async () => {};
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Login
-          <span className="text-blue-500"> ChatApp</span>
+          <span className="text-blue-500"> Chat.io</span>
         </h1>
 
         <form onSubmit={handleSubmit}>

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import GenderCheckbox from "../components/GenderCheckbox";
+import { Link } from "react-router-dom";
+import useSignup from "../hooks/useSignup";
 
 export default function Signup() {
   const [inputs, setInputs] = useState({
@@ -10,12 +12,22 @@ export default function Signup() {
     gender: "",
   });
 
-  const handleSubmit = async () => {};
+
+  const handleCheckboxChange = (gender) => {
+    setInputs({...inputs, gender});
+  }
+
+  const {loading, signup} = useSignup()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(inputs);
+  };
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Sign Up <span className="text-blue-500"> ChatApp</span>
+          Sign Up <span className="text-blue-500"> Chat.io</span>
         </h1>
 
         <form onSubmit={handleSubmit}>
