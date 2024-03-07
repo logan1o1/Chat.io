@@ -17,10 +17,13 @@ const useSignup = () => {
 
             const data = await res.json(); 
 
-            if (data.error) {
-                throw new Error(data.error)
-            }
-            
+            if (data.error) throw new Error(data.error);
+
+            if (!data) {
+                toast.error("An error occurred while signing up");
+            }else{
+                toast.success(`Welcome ${username}`);
+            }    
         } catch (error) {
             toast.error(error.message)
         }finally{
