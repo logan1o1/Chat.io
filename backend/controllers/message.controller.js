@@ -5,12 +5,12 @@ import { errorHandler } from "../utils/error.js";
 
 export const sendMessage = async (req, resp, next) => {
     try {
-        const {message} = req.body;
-        const {id: recieverId} = req.params;
+        const { message } = req.body;
+        const { id: recieverId } = req.params;
         const senderId = req.user._id;
 
         let conversation = await Conversation.findOne({
-            participants:{$all: [senderId, recieverId]} 
+            participants: { $all: [senderId, recieverId] }
         });  //Find the common user between them
 
         if (!conversation) {
@@ -42,17 +42,17 @@ export const sendMessage = async (req, resp, next) => {
 
 export const getMessages = async (req, resp, next) => {
     try {
-        const {id:userToChatId} = req.params;
+        const { id: userToChatId } = req.params;
         const senderId = req.user._id;
 
         const conversation = await Conversation.findOne({
-            participants: {$all: [senderId, userToChatId]}
+            participants: { $all: [senderId, userToChatId] },
         }).populate("messages");
 
-        if (!conversation) resp.status(200).json([]);
-
+        if (!conversation) {
+            return resp.status(200).json([]);
+        }
         const messages = conversation.messages;
-
         resp.status(200).json(messages);
     } catch (error) {
         next(error)
