@@ -14,11 +14,9 @@ const useGetMessages = () => {
                 const res = await fetch(`/api/messages/${selectedConversation._id}`)
                 const data  = await res.json();
 
-                if (data.success === false) {
-                    toast.error(data.message);
-                }else{
-                    setMessages(data)
-                }
+                if (data.success === false) toast.error(data.message);
+                
+                setMessages(data)
             } catch (error) {
                 toast.error(error.message);
             }finally{

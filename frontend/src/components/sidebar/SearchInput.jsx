@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 export default function SearchInput() {
   const [search, setSearch] = useState("");
   const {setSelectedConversation} = useConversation();
-  const {conversation} = useGetConversations();
+  const {conversations} = useGetConversations();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ export default function SearchInput() {
       return toast.error("Search term should be atleast 3 charecters");
     }
 
-    const searchedConversation = conversation.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
+    const searchedConversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
 
     if (searchedConversation) {
       setSelectedConversation(searchedConversation);

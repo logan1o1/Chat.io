@@ -3,7 +3,7 @@ import { useAuthContext } from '../../context/AuthContext'
 import useConversation from '../../zustand/useConversation';
 import { extractTime } from '../../utils/extractTime';
 
-export default function Message({message}) {
+const Message = ({ message }) => {
   const {authUser} = useAuthContext();
   const {selectedConversation} = useConversation();
   const fromMe = message.senderId === authUser._id;
@@ -11,6 +11,8 @@ export default function Message({message}) {
   const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
   const formatedTime = extractTime(message.createdAt);
+  // console.log(message);
+  // console.log(message.senderId);
 
   return (
     <div className={`chat ${chatClassName}`}>
@@ -24,3 +26,5 @@ export default function Message({message}) {
 		</div>
   )
 }
+
+export default Message;

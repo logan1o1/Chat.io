@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
@@ -22,7 +22,7 @@ const MessageContainer = () => {
         <>
           {/* Header */}
           <div className="bg-slate-500 px-4 py-2 mb-2">
-            <span className="label-text"></span>{" "}
+            {" "}
             <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
           </div>
 
