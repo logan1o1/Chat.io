@@ -17,11 +17,12 @@ const useSendMessage = () => {
 				},
 				body: JSON.stringify({ message }),
             })
-            const data = res.json();
+            const data = await res.json();
 
             if (data.success === false) toast.error(data.message);
                 
             setMessages([...messages, data]);
+
         } catch (error) {
             toast.error(error.message);
         }finally{
@@ -31,4 +32,4 @@ const useSendMessage = () => {
     return { loading, sendMessage };
 }
 
-export default useSendMessage
+export default useSendMessage;
