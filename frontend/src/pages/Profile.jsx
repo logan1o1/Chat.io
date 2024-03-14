@@ -16,7 +16,7 @@ export default function Profile() {
     gender: "",
   });
   const { loading, updateUser } = useUpdateUser();
-  const {deleteUser} = usedeleteUser()
+  const { deleteUser } = usedeleteUser();
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
@@ -33,7 +33,7 @@ export default function Profile() {
 
   const handleDeleteUser = async () => {
     await deleteUser();
-  }
+  };
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
       <h1 className="text-3xl font-semibold text-center text-gray-300">
@@ -121,7 +121,7 @@ export default function Profile() {
         </div>
       </form>
       <Link className="mt-2 " to={"/"}>
-        <BiHome className="w-5 h-5 text-white cursor-pointer" />
+        <BiHome className="w-5 h-5 text-white cursor-pointer hover:text-blue-500" />
       </Link>
     </div>
   );
