@@ -39,7 +39,8 @@ export const signup = async (req, resp, next) => {
                 _id: newUser._id,
                 fullName: newUser.fullName,
                 username: newUser.username,
-                profilePic: newUser.profilePic
+                profilePic: newUser.profilePic,
+                gender: newUser.gender,
             }); 
         }else{
             next(errorHandler(400, "Invalid user data"))
@@ -65,7 +66,8 @@ export const login = async (req, resp, next) => {
             _id: user._id,
             fullName: user.fullName,
             username: user.username,
-            profilePic: user.profilePic
+            profilePic: user.profilePic,
+            gender: user.gender,
         })
     } catch (error) {
         next(error)

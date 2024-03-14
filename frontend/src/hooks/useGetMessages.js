@@ -26,12 +26,6 @@ const useGetMessages = () => {
 		if (selectedConversation?._id) getMessages();
 	}, [selectedConversation?._id, setMessages]);
 
-    // useEffect(() => {
-    //     if (messages.length > 0) {
-    //         // console.log( messages);
-    //     }
-    // }, [messages]);
-
     return  { messages, loading };
 }
 export default useGetMessages;

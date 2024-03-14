@@ -26,8 +26,7 @@ const useSignup = () => {
             }else{
                 localStorage.setItem("auth_user", JSON.stringify(data));
                 setAuthUser(data);
-                toast.success("Account created successfully!");
-                toast.success(`Welcome ${username}`);
+                toast.success(`Account created successfully! Welcome ${username}`);
             } 
         } catch (error) {
             toast.error(error.message)
