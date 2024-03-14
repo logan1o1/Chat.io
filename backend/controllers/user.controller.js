@@ -19,6 +19,9 @@ export const getUsersForSidebar = async (req, resp, next) => {
 export const updateUserDetails = async (req, resp, next) => {
     try {
         if (req.body.password) {
+
+            if (req.body.password !== req.body.confirmPassword) next(errorHandler(400, "Passwords don't match"));
+
             const hashedPassword = bcrypt.hashSync(req.body.password, 5);
 
             const updateUser = await User.findByIdAndUpdate(req.params.id, {

@@ -3,6 +3,8 @@ import GenderCheckbox from "../components/GenderCheckbox";
 import { Link } from "react-router-dom";
 import { BiHome } from "react-icons/bi";
 import { useAuthContext } from "../context/AuthContext";
+import useUpdateUser from "../hooks/useUpdateUser";
+import usedeleteUser from "../hooks/usedeleteUser";
 
 export default function Profile() {
   const { authUser } = useAuthContext();
@@ -13,7 +15,8 @@ export default function Profile() {
     confirmPassword: "",
     gender: "",
   });
-  const [loading, setLoading] = useState(false);
+  const { loading, updateUser } = useUpdateUser();
+  const {deleteUser} = usedeleteUser()
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
@@ -21,15 +24,20 @@ export default function Profile() {
 
   useEffect(() => {
     setInputs(authUser);
-  },[]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await updateUser(inputs);
   };
+
+  const handleDeleteUser = async () => {
+    await deleteUser();
+  }
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
       <h1 className="text-3xl font-semibold text-center text-gray-300">
-        user's <span className="text-blue-500"> Profile</span>
+        {inputs.username}'s <span className="text-blue-500"> Profile</span>
       </h1>
 
       <form onSubmit={handleSubmit}>
@@ -92,14 +100,6 @@ export default function Profile() {
           selectedGender={inputs.gender}
         />
 
-        <Link
-          to={"/login"}
-          className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
-          href="#"
-        >
-          Already have an account?
-        </Link>
-
         <div>
           <button
             className="btn btn-block btn-sm mt-2 border border-slate-700"
@@ -110,6 +110,13 @@ export default function Profile() {
             ) : (
               "Update"
             )}
+          </button>
+          <button
+            type="button"
+            onClick={handleDeleteUser}
+            className="btn btn-block btn-sm mt-2 border border-slate-700"
+          >
+            Delete
           </button>
         </div>
       </form>
